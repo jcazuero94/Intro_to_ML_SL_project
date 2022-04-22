@@ -1,4 +1,3 @@
-
 # Introduction to Machine Learning: Supervised Learning
 ## Final project
 
@@ -765,7 +764,7 @@ print(
 )
 ```
 
-    Logistic accuracy: 0.915664722712988
+    Logistic accuracy: 0.9158210728748104
 
 
 
@@ -779,14 +778,99 @@ print(
 )
 ```
 
-    Logistic ROC AUC: 0.8409258323543856
+    Logistic ROC AUC: 0.8404060735215327
 
 
 
     <IPython.core.display.Javascript object>
 
 
-The baseline logistic regresion model achieves a 92% accuracy and a roc auc score of 0.84 in the validation set.
+
+```python
+coefs_log = (
+    pd.DataFrame(
+        index=list(X_train_ss.columns),
+        columns=["Coef"],
+        data=log_model.coef_.T,
+    )
+    .sort_values("Coef")
+    .reset_index()
+)
+```
+
+
+    <IPython.core.display.Javascript object>
+
+
+
+```python
+coefs_log.loc[
+    coefs_log["Coef"].apply(lambda x: abs(x)).sort_values(ascending=False).index
+].head()
+```
+
+
+
+
+<div>
+<style scoped>
+    .dataframe tbody tr th:only-of-type {
+        vertical-align: middle;
+    }
+
+    .dataframe tbody tr th {
+        vertical-align: top;
+    }
+
+    .dataframe thead th {
+        text-align: right;
+    }
+</style>
+<table border="1" class="dataframe">
+  <thead>
+    <tr style="text-align: right;">
+      <th></th>
+      <th>index</th>
+      <th>Coef</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <th>22</th>
+      <td>AgeCategory</td>
+      <td>0.980381</td>
+    </tr>
+    <tr>
+      <th>0</th>
+      <td>GenHealth</td>
+      <td>-0.520062</td>
+    </tr>
+    <tr>
+      <th>21</th>
+      <td>Sex</td>
+      <td>0.348751</td>
+    </tr>
+    <tr>
+      <th>20</th>
+      <td>Stroke</td>
+      <td>0.199082</td>
+    </tr>
+    <tr>
+      <th>19</th>
+      <td>Smoking</td>
+      <td>0.176382</td>
+    </tr>
+  </tbody>
+</table>
+</div>
+
+
+
+
+    <IPython.core.display.Javascript object>
+
+
+The baseline logistic regresion model achieves a 92% accuracy and a roc auc score of 0.84 in the validation set. The most important attribues according to the coefficient norm are Age category, general health, sex, and stroke and smoking history.
 
 ### Random Forest
 
@@ -1051,7 +1135,7 @@ shap.summary_plot(shap_values[1], X_test[columns_to_retain])
 
 
     
-![png](output_75_0.png)
+![png](output_77_0.png)
     
 
 
@@ -1107,7 +1191,7 @@ RocCurveDisplay.from_predictions(
 
 
     
-![png](output_80_1.png)
+![png](output_82_1.png)
     
 
 
@@ -1131,7 +1215,7 @@ plot_confusion_matrix(model_rf, X_test[columns_to_retain], y_test)
 
 
     
-![png](output_82_1.png)
+![png](output_84_1.png)
     
 
 
