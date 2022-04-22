@@ -45,7 +45,7 @@ warnings.filterwarnings("ignore")
 ```
 
 
-    <IPython.core.display.Javascript object>
+ 
 
 
 ## EDA
@@ -58,7 +58,7 @@ data = pd.read_csv("../Data/heart_2020_cleaned.csv")
 ```
 
 
-    <IPython.core.display.Javascript object>
+ 
 
 
 Transform binary and ordinal attributes into integers for analysis and modelling
@@ -71,7 +71,7 @@ data["Diabetic"] = ser
 ```
 
 
-    <IPython.core.display.Javascript object>
+ 
 
 
 
@@ -89,7 +89,7 @@ data["AgeCategory"].unique()
 
 
 
-    <IPython.core.display.Javascript object>
+ 
 
 
 
@@ -98,7 +98,7 @@ data["AgeCategory"] = data["AgeCategory"].apply(lambda x: int(x[:2]))
 ```
 
 
-    <IPython.core.display.Javascript object>
+ 
 
 
 
@@ -114,7 +114,7 @@ data["GenHealth"].unique()
 
 
 
-    <IPython.core.display.Javascript object>
+ 
 
 
 
@@ -130,7 +130,7 @@ data["Sex"].unique()
 
 
 
-    <IPython.core.display.Javascript object>
+ 
 
 
 
@@ -140,7 +140,7 @@ sex_map = {"Female": 0, "Male": 1}
 ```
 
 
-    <IPython.core.display.Javascript object>
+ 
 
 
 
@@ -150,7 +150,7 @@ data["Sex"] = data["Sex"].map(sex_map)
 ```
 
 
-    <IPython.core.display.Javascript object>
+ 
 
 
 
@@ -184,7 +184,7 @@ data.dtypes
 
 
 
-    <IPython.core.display.Javascript object>
+ 
 
 
 
@@ -201,7 +201,7 @@ data["Race"].unique()
 
 
 
-    <IPython.core.display.Javascript object>
+ 
 
 
 
@@ -218,7 +218,7 @@ data["Diabetic"].unique()
 
 
 
-    <IPython.core.display.Javascript object>
+ 
 
 
 Data exploration
@@ -231,7 +231,7 @@ binary_columns = [
 ```
 
 
-    <IPython.core.display.Javascript object>
+ 
 
 
 
@@ -255,7 +255,7 @@ binary_columns
 
 
 
-    <IPython.core.display.Javascript object>
+ 
 
 
 
@@ -462,7 +462,7 @@ data.describe()
 
 
 
-    <IPython.core.display.Javascript object>
+ 
 
 
 
@@ -471,7 +471,7 @@ column_correlations = data.corr()
 ```
 
 
-    <IPython.core.display.Javascript object>
+ 
 
 
 
@@ -503,7 +503,7 @@ column_correlations["HeartDisease"].sort_values()
 
 
 
-    <IPython.core.display.Javascript object>
+ 
 
 
 The atributes that have a greater positive correlation with heart disease are the Age, the difficulty walking and past strokes; while the atributes with greater negative correlation are General health and physical activity.
@@ -522,7 +522,7 @@ fig.set_size_inches(10, 8)
 
 
 
-    <IPython.core.display.Javascript object>
+ 
 
 
 
@@ -531,7 +531,7 @@ data_plot = data.drop(binary_columns, axis=1)
 ```
 
 
-    <IPython.core.display.Javascript object>
+ 
 
 
 
@@ -540,7 +540,7 @@ sample_plot = data_plot[data_plot["HeartDisease"] == 1].copy()
 ```
 
 
-    <IPython.core.display.Javascript object>
+ 
 
 
 
@@ -560,7 +560,7 @@ sample_plot = pd.concat(
 ```
 
 
-    <IPython.core.display.Javascript object>
+ 
 
 
 
@@ -587,7 +587,7 @@ sns.pairplot(
 
 
 
-    <IPython.core.display.Javascript object>
+ 
 
 
 The plot above shows a very clear relation between the possibility of heart disease and other key indicators like age and general health and physical health, 
@@ -673,7 +673,7 @@ data[binary_columns + ["HeartDisease"]].groupby("HeartDisease").mean()
 
 
 
-    <IPython.core.display.Javascript object>
+ 
 
 
 As seen in the table above smoking, previous stroke episodes, difficulty walking, physical activity, Asthma, kidney disease and skin cancer are all related with hearth disease, while alcohol drinking has little incidence.
@@ -690,7 +690,7 @@ data = pd.get_dummies(data, drop_first=True)
 ```
 
 
-    <IPython.core.display.Javascript object>
+ 
 
 
 
@@ -701,7 +701,7 @@ X_train, X_test, y_train, y_test = train_test_split(
 ```
 
 
-    <IPython.core.display.Javascript object>
+ 
 
 
 
@@ -713,7 +713,7 @@ train_ss = pd.DataFrame(
 ```
 
 
-    <IPython.core.display.Javascript object>
+ 
 
 
 
@@ -722,7 +722,7 @@ X_train_ss = train_ss.loc[X_train.index]
 ```
 
 
-    <IPython.core.display.Javascript object>
+ 
 
 
 
@@ -731,7 +731,7 @@ X_test_ss = train_ss.loc[X_test.index]
 ```
 
 
-    <IPython.core.display.Javascript object>
+ 
 
 
 
@@ -741,7 +741,7 @@ def roc_auc_scorer(estimator, X, y):
 ```
 
 
-    <IPython.core.display.Javascript object>
+ 
 
 
 ### Logistic regresion
@@ -754,7 +754,7 @@ log_model = LogisticRegression().fit(X_train_ss, y_train)
 ```
 
 
-    <IPython.core.display.Javascript object>
+ 
 
 
 
@@ -768,7 +768,7 @@ print(
 
 
 
-    <IPython.core.display.Javascript object>
+ 
 
 
 
@@ -782,7 +782,7 @@ print(
 
 
 
-    <IPython.core.display.Javascript object>
+ 
 
 
 
@@ -799,7 +799,7 @@ coefs_log = (
 ```
 
 
-    <IPython.core.display.Javascript object>
+ 
 
 
 
@@ -867,7 +867,7 @@ coefs_log.loc[
 
 
 
-    <IPython.core.display.Javascript object>
+ 
 
 
 The baseline logistic regresion model achieves a 92% accuracy and a roc auc score of 0.84 in the validation set. The most important attribues according to the coefficient norm are Age category, general health, sex, and stroke and smoking history.
@@ -882,7 +882,7 @@ imbalance_factor = 1 / data["HeartDisease"].mean()
 ```
 
 
-    <IPython.core.display.Javascript object>
+ 
 
 
 
@@ -903,7 +903,7 @@ def gen_rf_hyperparameters():
 ```
 
 
-    <IPython.core.display.Javascript object>
+ 
 
 
 ### Cross validation
@@ -916,7 +916,7 @@ n_cv = 50
 ```
 
 
-    <IPython.core.display.Javascript object>
+ 
 
 
 
@@ -926,7 +926,7 @@ final_params_allcols = None
 ```
 
 
-    <IPython.core.display.Javascript object>
+ 
 
 
 
@@ -973,7 +973,7 @@ for i in range(n_cv):
 
 
 
-    <IPython.core.display.Javascript object>
+ 
 
 
 The AUC ROC cross-validated score is similar to the one of the logistic regresion, just a little bit higher. Now, feature selection will be developed to see if the resulting model can be improved.
@@ -1015,7 +1015,7 @@ print(f"Columns to retain: {columns_to_retain}")
 
 
 
-    <IPython.core.display.Javascript object>
+ 
 
 
 
@@ -1025,7 +1025,7 @@ final_params = None
 ```
 
 
-    <IPython.core.display.Javascript object>
+ 
 
 
 
@@ -1069,7 +1069,7 @@ for i in range(n_cv):
 
 
 
-    <IPython.core.display.Javascript object>
+ 
 
 
 The model has a similar ROC AUC score as the logistic regresion model and the random forest with all features. Feature selection is usefull as it allows to produce a simpler model with similar predictive power.<br>
@@ -1081,7 +1081,7 @@ model_rf = RandomForestClassifier(**final_params)
 ```
 
 
-    <IPython.core.display.Javascript object>
+ 
 
 
 
@@ -1099,7 +1099,7 @@ model_rf.fit(X_train[columns_to_retain], y_train)
 
 
 
-    <IPython.core.display.Javascript object>
+ 
 
 
 #### SHAP
@@ -1112,7 +1112,7 @@ explainer = shap.TreeExplainer(model_rf)
 ```
 
 
-    <IPython.core.display.Javascript object>
+ 
 
 
 
@@ -1121,7 +1121,7 @@ shap_values = explainer.shap_values(X_test[columns_to_retain], y_test)
 ```
 
 
-    <IPython.core.display.Javascript object>
+ 
 
 
 The following plot shows the shapely values which can interpreted as the marginal contribution towards the prediction for each record attribute of the test set. One point in the following graph in the AgeCategory column represents a single observation whose AgeCategory value is encoded in the color (so older people are red dots), and has the marginal contribution calculated plotted in the x-axis. An easier way to interpret the graph is by understanding the width of the point cloud as the feature importance and by knowing that if red points are on the right of the plot, then there is a positive correlation between the feature and heart disease, and viceversa.
@@ -1140,7 +1140,7 @@ shap.summary_plot(shap_values[1], X_test[columns_to_retain])
 
 
 
-    <IPython.core.display.Javascript object>
+ 
 
 
 ## Metrics
@@ -1153,7 +1153,7 @@ y_test_pred_proba = model_rf.predict_proba(X_test[columns_to_retain])
 ```
 
 
-    <IPython.core.display.Javascript object>
+ 
 
 
 
@@ -1162,7 +1162,7 @@ y_test_pred_proba_log = log_model.predict_proba(X_test_ss)
 ```
 
 
-    <IPython.core.display.Javascript object>
+ 
 
 
 
@@ -1196,7 +1196,7 @@ RocCurveDisplay.from_predictions(
 
 
 
-    <IPython.core.display.Javascript object>
+ 
 
 
 Both models, the logistic regresion and the random forest achieve considerable predictive power. The confusion matrix shown below is evidence of the utility of the model as they can identify high risk individuals so that preventive measures can be taken.
@@ -1220,7 +1220,7 @@ plot_confusion_matrix(model_rf, X_test[columns_to_retain], y_test)
 
 
 
-    <IPython.core.display.Javascript object>
+ 
 
 
 
